@@ -1,1 +1,1 @@
-﻿# Simple Loginm and Registration function Implemetation
+﻿# Simple Login and Registration function Implemetation
