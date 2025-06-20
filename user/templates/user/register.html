@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Register</h2>
+        <!---message -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            
+
+            {% for field in form %}
+            <div><br>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% for error in field.errors %}
+                <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <!-- Non-field errors here -->
+            {% if form.non_field_errors %}
+            <div class="error">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <br><button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </div>
+</body>
+
+</html>
